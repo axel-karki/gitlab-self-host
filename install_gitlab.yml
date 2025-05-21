@@ -1,0 +1,26 @@
+- name: Install GitLab on VM
+  hosts: gitlab         # Matches the group in your inventory
+  vars:
+    gitlab_edition: gitlab-ce  # Change to gitlab-ce if using the free community edition
+
+  tasks:
+    - name: Install dependencies
+      apt:
+        name:
+          - curl
+          - openssh-server
+          - ca-certificates
+        state: present
+        update_cache: true
+
+    - name: Add GitLab repository script
+      shell: |
+        curl https://packages.gitlab.com/install/repositories/gitlab/{{ gitlab_edition }}/script.deb.sh | bash
+
+    - name: Install GitLab
+      apt:
+        name: "{{ gitlab_edition }}"
+        state: present
+
+    - name: Reconfigure GitLab
+      shell: gitlab-ctl reconfigure

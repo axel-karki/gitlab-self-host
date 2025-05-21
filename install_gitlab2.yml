@@ -1,0 +1,33 @@
+- name: Install GitLab on VM
+  hosts: gitlab
+  vars:
+    gitlab_edition: gitlab-ce
+  tasks:
+    - name: Install dependencies
+      apt:
+        name:
+          - curl
+          - openssh-server
+          - ca-certificates
+        state: present
+        update_cache: true
+
+    - name: Check if GitLab repository is already configured
+      stat:
+        path: /etc/apt/sources.list.d/gitlab_{{ gitlab_edition }}.list
+      register: gitlab_repo
+
+    - name: Add GitLab repository script
+      shell: |
+        curl https://packages.gitlab.com/install/repositories/gitlab/{{ gitlab_edition }}/script.deb.sh | bash
+      when: not gitlab_repo.stat.exists
+
+    - name: Install GitLab
+      apt:
+        name: "{{ gitlab_edition }}"
+        state: present
+      register: gitlab_install
+
+    - name: Reconfigure GitLab
+      shell: gitlab-ctl reconfigure
+      when: gitlab_install.changed
