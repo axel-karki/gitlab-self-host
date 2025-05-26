@@ -51,3 +51,10 @@ This playbook:
 
 4. Navigate to Admin area. Crate a new user with admin privileges and configure an initial password. Use the account to login as admin. The root account can now be disabled.
    <img width="770" alt="Screenshot 2025-05-26 at 7 25 10 AM" src="https://github.com/user-attachments/assets/f814318a-b029-47f1-b9b7-ec93f02f7b09" />
+
+5. Create Project
+   <img width="770" alt="Screenshot 2025-05-26 at 8 08 59 AM" src="https://github.com/user-attachments/assets/a1ae1ce8-46be-465b-bde7-d268561da5d2" />
+
+6. Runner to be configured
+   <img width="724" alt="Screenshot 2025-05-26 at 8 09 11 AM" src="https://github.com/user-attachments/assets/98a5901a-3679-4893-837a-4cf67a1cddb2" />
+   <img width="783" alt="Screenshot 2025-05-26 at 8 11 15 AM" src="https://github.com/user-attachments/assets/ec6f2980-80d6-4c29-b0bf-f8b10a4babe3" />
